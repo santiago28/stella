@@ -18,6 +18,7 @@ if ($_SESSION['login'])
 	$id_componente=$_POST['id_componente'];
 	$acta_reservada=$_POST['acta_reservada'];
 	$id_acta=$_POST['id_acta'];
+	$tipo_acta=$_POST['tipo_acta'];
 
 	//Query para hallar las variables faltantes
 	$data= mysql_query(("
@@ -69,7 +70,7 @@ if ($_SESSION['login'])
 
 
 	//Query para traer las preguntas x componente
-	if ($id_componente == 5) {
+	// if ($id_componente == 5) {
 		$preguntas= mysql_query(("	SELECT
 			pregunta_x_modalidad.id_tema,
 			pregunta_x_modalidad.id_subtema,
@@ -87,37 +88,38 @@ if ($_SESSION['login'])
 			pregunta_x_modalidad.id_subtema=subtema.id_subtema and
 			pregunta_x_modalidad.id_componente='$id_componente' and
 			pregunta_x_modalidad.id_modalidad='$id_modalidad' and
+			pregunta_x_modalidad.tipo_acta='$tipo_acta' and
 			pregunta_x_modalidad.estado='1'
 			order by
 			pregunta_x_modalidad.id_tema,
-			pregunta_x_modalidad.id_subtema,
+			-- pregunta_x_modalidad.id_subtema,
 			pregunta_x_modalidad.id_pregunta
 			"),$conexion); //pregunta_x_modalidad.id_subtema,
-		}else{
-			$preguntas= mysql_query(("	SELECT
-				pregunta_x_modalidad.id_tema,
-				pregunta_x_modalidad.id_subtema,
-				pregunta_x_modalidad.id_pregunta,
-				tema.nombre_tema,
-				subtema.nombre_subtema,
-				pregunta.descripcion_pregunta,
-				pregunta.descripcion_observacion,
-				pregunta.descripcion_accion_correctiva
-				FROM
-				pregunta_x_modalidad,tema,subtema,pregunta
-				WHERE
-				pregunta_x_modalidad.id_pregunta=pregunta.id_pregunta and
-				pregunta_x_modalidad.id_tema=tema.id_tema and
-				pregunta_x_modalidad.id_subtema=subtema.id_subtema and
-				pregunta_x_modalidad.id_componente='$id_componente' and
-				pregunta_x_modalidad.id_modalidad='$id_modalidad' and
-				pregunta_x_modalidad.estado='1'
-				order by
-				pregunta_x_modalidad.id_tema,
-				/*pregunta_x_modalidad.id_subtema,*/
-				pregunta_x_modalidad.id_pregunta
-				"),$conexion); //pregunta_x_modalidad.id_subtema,
-			}
+		// }else{
+		// 	$preguntas= mysql_query(("	SELECT
+		// 		pregunta_x_modalidad.id_tema,
+		// 		pregunta_x_modalidad.id_subtema,
+		// 		pregunta_x_modalidad.id_pregunta,
+		// 		tema.nombre_tema,
+		// 		subtema.nombre_subtema,
+		// 		pregunta.descripcion_pregunta,
+		// 		pregunta.descripcion_observacion,
+		// 		pregunta.descripcion_accion_correctiva
+		// 		FROM
+		// 		pregunta_x_modalidad,tema,subtema,pregunta
+		// 		WHERE
+		// 		pregunta_x_modalidad.id_pregunta=pregunta.id_pregunta and
+		// 		pregunta_x_modalidad.id_tema=tema.id_tema and
+		// 		pregunta_x_modalidad.id_subtema=subtema.id_subtema and
+		// 		pregunta_x_modalidad.id_componente='$id_componente' and
+		// 		pregunta_x_modalidad.id_modalidad='$id_modalidad' and
+		// 		pregunta_x_modalidad.estado='1'
+		// 		order by
+		// 		pregunta_x_modalidad.id_tema,
+		// 		/*pregunta_x_modalidad.id_subtema,*/
+		// 		pregunta_x_modalidad.id_pregunta
+		// 		"),$conexion); //pregunta_x_modalidad.id_subtema,
+		// 	}
 
 
 			//Obtener el numero de visita

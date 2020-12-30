@@ -88,13 +88,33 @@ class clsFunciones {
 		}
 	}
 
-	function insertsubtema($nombre_subtema,$id_componente,$id_tema,$estado){
+	function insertsubtema($nombre_subtema,$id_componente,$id_tema,$estado,$modalidades,$porcentaje_modalidad){
 		include("conexion.php");
 		$query=		"INSERT INTO subtema
 		(nombre_subtema,id_componente,id_tema,estado)
 		values
 		('$nombre_subtema','$id_componente','$id_tema','$estado')";
-		$insertreg= mysql_query($query,$conexion);
+
+        $insertreg= mysql_query($query,$conexion);
+		$id_subtema = mysql_insert_id($conexion);
+		$porcentajes= array();
+
+		foreach ($porcentaje_modalidad as $key => $value) {
+			
+			if($value != 0){
+				array_push($porcentajes, $value);
+			}
+		}
+
+		foreach ($modalidades as $key => $value) {
+			// $var = floatval()
+			$query1=		"INSERT INTO estandar_x_modalidad
+			(id_modalidad,id_componente,id_tema,id_subtema,porc_estandar_x_modalidad,estado)
+			values
+			('$value','$id_componente','$id_tema','$id_subtema','$porcentajes[$key]','1')";
+			$insertreg1= mysql_query($query1,$conexion);
+		}
+
 		if(mysql_affected_rows() > 0){
 			return TRUE;
 		} else {
@@ -102,9 +122,7 @@ class clsFunciones {
 		}
 	}
 
-
-
-	function insertpregunta($descripcion_pregunta,$id_componente,$id_tema,$id_subtema,$id_modalidad,$estado){
+	function insertpregunta($descripcion_pregunta,$id_componente,$id_tema,$id_subtema,$id_modalidad,$estado, $tipo_acta){
 		include("conexion.php");
 		$query="
 		INSERT INTO pregunta
@@ -127,10 +145,9 @@ class clsFunciones {
 			for ($i=0; $i < count($id_modalidad);$i++){
 				$query2="
 				INSERT INTO pregunta_x_modalidad
-				(id_pregunta,id_modalidad,id_subtema,id_tema,id_componente,estado)
+				(id_pregunta,id_modalidad,id_subtema,id_tema,id_componente,estado,tipo_acta)
 				values
-				('$ultima_pregunta','$id_modalidad[$i]','$id_subtema','$id_tema','$id_componente','$estado')
-				";
+				('$ultima_pregunta','$id_modalidad[$i]','$id_subtema','$id_tema','$id_componente','$estado',$tipo_acta)";
 				$insertreg2= mysql_query($query2,$conexion);
 			}
 			return TRUE;
@@ -138,7 +155,6 @@ class clsFunciones {
 			return FALSE;
 		}
 	}
-
 
 	function insertobsevaluador($id_acta,$fecha_observacion_evaluador,$descripcion_observacion_evaluador,$id_interventor,$estado){
 		include("conexion.php");
@@ -233,7 +249,7 @@ class clsFunciones {
 		$transporte_interventoria,
 		$justificacion,
 		$tema_encuentro
-	){
+	  ){
 
 		include("conexion.php");
 		for ($i=0; $i < count($id_pregunta);$i++)

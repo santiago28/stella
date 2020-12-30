@@ -129,6 +129,12 @@ if ($_SESSION['login'])
 						<option  value="<?php  echo  $row['id_componente']; ?>"><?php echo  $row['nombre_componente']; ?></option>	<?php 	}	?>
 					</select>
 
+					<select  class="form-control" name="tipo_acta" id="select_4">
+						<option value="0" >Seleccione tipo de acta...</option>
+						<option value="1">Familiar-AAVN </option>
+						<option value="2">Familiar-administrativas</option>
+						<option value="3">Familiar-sede</option>
+					</select>
 
 					<div id="select5">
 						<select data-parsley-required class="form-control" id="select50" name="acta_reservada">
@@ -209,6 +215,8 @@ if ($_SESSION['login'])
 						$("#select2").change(function(){cargar_menu3();});
 						$("#select2").attr("disabled",true);
 						$("#select3").attr("disabled",true);
+						$("#select_4").attr("disabled",true);
+						$("#select_4 option[value="+ 0 +"]").attr("selected",true)
 					});
 
 					function cargar_menu1()
@@ -224,51 +232,64 @@ if ($_SESSION['login'])
 							}
 						});
 					}
+
 					function cargar_menu2()
 					{
-						var code = $("#select1").val();
-						$.get("lib/combo-configevaluaciones/option-select2.php", { code: code },
-						function(resultado)
-						{
-							if(resultado == false)
+							var code = $("#select1").val();
+							$.get("lib/combo-configevaluaciones/option-select2.php", { code: code },
+							function(resultado)
 							{
-								alert("Error");
+								if(resultado == false)
+								{
+									alert("Error");
+								}
+								else
+								{
+									$("#select2").attr("disabled",false);
+									document.getElementById("select2").options.length=1;
+									$('#select2').append(resultado);
+								}
 							}
-							else
-							{
-								$("#select2").attr("disabled",false);
-								document.getElementById("select2").options.length=1;
-								$('#select2').append(resultado);
-							}
-						}
 
-					);
-				}
-
-				function cargar_menu3()
-				{
-					var code = $("#select1").val();
-					var code2 = $("#select2").val();
-					$.get("lib/combo-configevaluaciones/option-select3.php?", { code: code, code2: code2 },
-					function(resultado)
-					{
-						if(resultado == false)
-						{
-							alert("Error");
-						}
-						else
-						{
-							$("#select3").attr("disabled",false);
-							document.getElementById("select3").options.length=1;
-							$('#select3').append(resultado);
-						}
+						);
 					}
-				);
-			}
+
+					function cargar_menu3()
+					{
+							var code = $("#select1").val();
+							var code2 = $("#select2").val();
+							$.get("lib/combo-configevaluaciones/option-select3.php?", { code: code, code2: code2 },
+							function(resultado)
+							{
+								if(resultado == false)
+								{
+									alert("Error");
+								}
+								else
+								{
+									$("#select3").attr("disabled",false);
+									document.getElementById("select3").options.length=1;
+									$('#select3').append(resultado);
+								}
+							}
+						);
+					}
 
 
 
-
+					$('#select4').on('change', function(){
+						debugger;
+						var value_componente = $("#select4").val();
+						var value_modalidad = $("#select2").val();
+						if (value_componente == 7 && value_modalidad == 5) {
+							$("#select_4").attr("disabled",false);	
+							$('#select_4').attr('data-parsley-min', 1);
+						}else{
+							$("#select_4").attr("disabled",true);
+							$("#select_4 option[value="+ 0 +"]").attr("selected",true)
+							$('#select_4').attr('data-parsley-min', 0);
+						}
+					});
 
 
 

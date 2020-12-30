@@ -186,6 +186,14 @@ if ($_SESSION['login'])
 								<option value="0" required>Seleccione el Componente Técnico...</option>
 							</select>
 
+							<select  class="form-control" name="tipo_acta" id="select_4" >
+								<option value="0" >Seleccione tipo de acta...</option>
+								<option value="4">NO APLICA</option>
+								<option value="1">Familiar-AAVN </option>
+								<option value="2">Familiar-administrativas</option>
+								<option value="3">Familiar-sede</option>
+							</select>
+
 							<select data-parsley-min="1" class="form-control" name="id_subtema" id="select3">
 								<option value="0" required>Seleccione el Estandar...</option>
 							</select>
@@ -195,7 +203,7 @@ if ($_SESSION['login'])
 							<input type="text" name="descripcion_pregunta" class="form-control" placeholder="Describa la variable a ser evaluada" required>
 
 
-							<select data-parsley-required class="form-control" name="id_modalidad[]" id="select4"  size="10" multiple>
+							<select data-parsley-required class="form-control" name="id_modalidad[]" id="select4" size="10" multiple>
 								<option id="option4_js"  value="" required>Seleccione la o las modalidades...</option>
 								<?php  	while($row=mysql_fetch_assoc($lista_desplegable4)){ ?>
 									<option  id="<?php  echo  $row['id_modalidad']; ?>" value="<?php  echo  $row['id_modalidad']; ?>"><?php echo  $row['nombre_modalidad']; ?></option>	<?php 	}	?>
@@ -300,6 +308,8 @@ if ($_SESSION['login'])
 								$("#select2").change(function(){cargar_menu3();});
 								$("#select2").attr("disabled",true);
 								$("#select3").attr("disabled",true);
+								$("#select_4").attr("disabled",true);
+								$("#select_4").change(function(){cargar_menu_modalidad();})
 							});
 
 							function cargar_menu1()
@@ -331,6 +341,17 @@ if ($_SESSION['login'])
 									else
 									{
 										$("#select2").attr("disabled",false);
+
+										if (code == 7) {
+											$("#select_4").attr("disabled",false);
+											$("#select_4").attr("required",true);
+											$('#select_4').attr('data-parsley-min', 1);
+										}else{
+											$("#select_4").attr("disabled",true);
+											$("#select_4 option[value="+ 0 +"]").attr("selected",true)
+											$('#select_4').attr('data-parsley-min', 0);
+										}
+
 										document.getElementById("select2").options.length=1;
 										$('#select2').append(resultado);
 									}
@@ -358,8 +379,22 @@ if ($_SESSION['login'])
 									$('#select3').append(resultado);
 								}
 							}
-						);
-					}
+						  );
+					  }
+
+					  function cargar_menu_modalidad()
+					  { 
+							 var code = $("#select_4").val();
+							if(code != 4 ){
+								// $("#select4").attr("disabled",true);
+								var options = ["5"];
+								 $("#select4").val(options);
+							}else{
+								// $("#select4").attr("disabled",false);
+								$("#select4").val("");
+								// $("#select_4").val(0);	
+							}
+					  }
 
 
 

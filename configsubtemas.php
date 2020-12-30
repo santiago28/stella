@@ -29,6 +29,8 @@ if ($_SESSION['login'])
 			subtema.id_tema=tema.id_tema  and
 			subtema.estado='1'
 			"),$conexion);
+
+			$modalidades= mysql_query(("SELECT * FROM modalidad"),$conexion);
 		}
 		else{
 			//Grupo Members
@@ -48,12 +50,6 @@ if ($_SESSION['login'])
 				and subtema.estado='1'
 				"),$conexion);
 			}
-
-
-
-
-
-
 
 
 			?>
@@ -151,15 +147,9 @@ if ($_SESSION['login'])
 				?>
 
 
-
-
-
-
 				<div class="jumbotron">
 					<h2>Creación de Estándares</h2>
 					<h5>Consulte Estándares creados para cada uno de los componentes existentes</h5>
-
-
 
 
 					<form data-parsley-validate class="form-signin" role="form" name="formulario" METHOD="post" action="inserts.php">
@@ -168,7 +158,7 @@ if ($_SESSION['login'])
 						<select data-parsley-min="1" class="form-control" name="id_componente" id="select1">
 							<option id="option1_js" value="0" required>Seleccione el Componente...</option>
 							<?php  	while($row=mysql_fetch_assoc($lista_desplegable)){ ?>
-								<option  value="<?php  echo  $row['id_componente']; ?>"><?php echo  $row['nombre_componente']; ?></option>	<?php 	}	?>
+								<option  value="<?php  echo  $row['id_componente']; ?>"><?php echo  $row['nombre_componente']; ?></option>	<?php }	?>
 							</select>
 
 							<select data-parsley-min="1" class="form-control" name="id_tema" id="select2">
@@ -178,9 +168,20 @@ if ($_SESSION['login'])
 								</select>
 
 								<input type="text" name="nombre_subtema" class="form-control" placeholder="Nuevo Estandar" required autofocus>
-
 								<br>
 
+								<div class="form-check row">
+									<?php  	while($row=mysql_fetch_assoc($modalidades)){ ?>
+										<div class="col-md-6">
+											<input type="checkbox" class="form-check-input" name="modalidades[]" value="<?php  echo  $row['id_modalidad']; ?>">
+											<label class="form-check-label" for="exampleCheck1"><?php  echo  $row['nombre_modalidad']; ?></label>
+										</div>
+										<div class="col-md-3">
+										   <input type="text" name="porcentaje_modalidad[]" class="form-control" placeholder="porcentaje" autofocus>
+										</div>
+									<?php }?>
+								</div>
+								<br>
 
 								<button  class="btn btn-pascual" type="submit">Ingresar Nuevo</button>
 								<br>

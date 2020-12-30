@@ -61,8 +61,10 @@ if ($_SESSION['login'])
 		$id_componente=$_POST['id_componente'];
 		$id_tema=$_POST['id_tema'];
 		$estado="1";
+		$modalidades= $_POST['modalidades'];
+		$porcentaje_modalidad= $_POST['porcentaje_modalidad'];
 		$clsFunciones = new clsFunciones;
-		$insert = $clsFunciones->insertsubtema($nombre_subtema,$id_componente,$id_tema,$estado);
+	    $insert = $clsFunciones->insertsubtema($nombre_subtema,$id_componente,$id_tema,$estado,$modalidades,$porcentaje_modalidad);
 		$regresar="configsubtemas.php?";
 		break;
 
@@ -74,9 +76,11 @@ if ($_SESSION['login'])
 		$id_tema=$_POST['id_tema'];
 		$id_subtema=$_POST['id_subtema'];
 		$id_modalidad=$_POST['id_modalidad'];
+		isset($_POST['tipo_acta'])== true? $tipo_acta=$_POST['tipo_acta']:$tipo_acta=0;
+		if($tipo_acta==4) $tipo_acta=0;
 		$estado="1";
 		$clsFunciones = new clsFunciones;
-		$insert = $clsFunciones->insertpregunta($descripcion_pregunta,$id_componente,$id_tema,$id_subtema,$id_modalidad,$estado);
+		$insert = $clsFunciones->insertpregunta($descripcion_pregunta,$id_componente,$id_tema,$id_subtema,$id_modalidad,$estado, $tipo_acta);
 		$regresar="configpreguntas.php?";
 		break;
 
@@ -1126,7 +1130,7 @@ if ($_SESSION['login'])
 			$regresar="informesLiquidacion.php?msg=".$msg."&id_componente=".$id_componente."&id_contrato=".$id_contrato."&id=".$id."&id_grupo=".$id_grupo;
 		}
 
-		header ('Location: '.$regresar);
+		// header ('Location: '.$regresar);
 		return true;
 		break;
 
@@ -1136,10 +1140,10 @@ if ($_SESSION['login'])
 
 
 	if ($insert){
-		header('Location: '.$regresar.'&msg=1');
+		 header('Location: '.$regresar.'&msg=1');
 	}
 	else{
-		header('Location: '.$regresar.'&msg=2');
+	   header('Location: '.$regresar.'&msg=2');
 	}
 
 
@@ -1148,7 +1152,7 @@ if ($_SESSION['login'])
 } //End If login
 
 else {
-	header('Location: index.php');
+	  header('Location: index.php');
 
 }
 
