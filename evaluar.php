@@ -382,33 +382,6 @@ if ($_SESSION['login'])
 					<?php } ?>
 				</center>
 
-				<div class="bs-docs-section">
-					<h2>Gastos de desplazamiento</h2>
-				</div>
-
-				<!-- <center> -->
-				<div class="form-group col-sm-12">
-					<div class="form-group col-sm-6">
-						<label for="">Valor Gastos de Desplazamiento</label>
-						<input type="number" name="pago_desplazamiento" class="form-control valor" value="6000" required >
-					</div>
-
-					<div class="form-group col-sm-6">
-						<label for="">Transporte Interventoria</label>
-						<select class="form-control transporte_interventoria" name="transporte_interventoria">
-							<option value="SI">SI</option>
-							<option value="NO" selected="selected">NO</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group col-sm-12">
-					<div class="form-group col-sm-12">
-						<div class="input-group">
-							<div class="input-group-addon">Justificación</div>
-							<textarea class="form-control" name="justificacion" rows="3" style="width:100%" placeholder="Utilice este espacio para justificar si el valor del ajuste es mayor a 6.000"></textarea>
-						</div>
-					</div>
-				</div>
 				<!-- </center> -->
 
 
@@ -420,7 +393,6 @@ if ($_SESSION['login'])
 				<div class="alert alert-danger" role="alert">
 					<strong>¡Señor interventor!</strong> Para diligenciar esta evaluación tenga en cuenta las siguientes convenciones:
 					1.C		= Cumple,
-					2.CP	= Cumple Parcialmente,
 					3.NC	= No Cumple,
 					4.NS 	= No Subsanable,
 					5.NA	= No Aplica.
@@ -525,9 +497,6 @@ if ($_SESSION['login'])
 													<td class="active">
 														<select data-parsley-min="1" class="form-control" id="select1" name="valor_calificacion[]">
 															<option value="1" selected	>1.C</option>
-															<?php if ($_POST['id_componente'] != 7){ ?>
-																<option value="2" 			>2.CP</option>
-															<?php } ?>
 															<option value="3" 			>3.NC</option>
 															<option value="4" 			>4.NS</option>
 															<option value="5" 			>5.NA</option>
@@ -573,7 +542,7 @@ if ($_SESSION['login'])
 				?>
 
 				<div class="footer">
-					<center> <p> &copy; 2020 Sistema de Información de la interventoría Buen Comienzo | <img src="images/pascualbravo.jpg" width="260" height="60"> </p>
+					<center> <p> &copy; 2024 Sistema de Información de la Supervisión de Buen Comienzo | <img src="images/pascualbravo.jpg" width="260" height="60"> </p>
 
 					</div>
 

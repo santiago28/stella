@@ -115,7 +115,7 @@ class selects extends MySQL
 		id_componente='".$this->code."' and
 		id_tema='".$this->code2."' and
 		estado='1'	
-		order by nombre_subtema
+		order by id_subtema
 		");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)

@@ -42,26 +42,27 @@
 					<span><a href="reservaradicado.php?msg=0">Reservar números de Acta</a></span>
 				</div>
 				<div class="item-menu-titulo">
-					<span>Interventorias</span>
+					<span>Visitas</span>
 				</div>
 				<div class="item-menu">
 					<i class="material-icons">&#xE87C;</i>
-					<span><a href="consultaevaluaciones.php?msg=0">Interventorías</a></span>
+					<span><a href="consultaevaluaciones.php?msg=0">Visitas</a></span>
 				</div>
-				<div class="item-menu">
+				<!-- <div class="item-menu">
 					<i class="material-icons">&#xE25C;</i>
 					<span><a href="descuentoVer.php?msg=0">Descuentos Alimentos</a></span>
-				</div>
-				<?php if ($id_grupo == 1 || ($id_grupo == 3 && $id_componente == 7)){ ?>
+				</div> -->
+				<!-- <?php if ($id_grupo == 1 || ($id_grupo == 3 && $id_componente == 7)){ ?>
 					<div class="item-menu" id="descuentos_valoracion">
 						<i class="material-icons">&#xE25C;</i>
 						<span><a href="descuentosValoracion.php">Descuentos Valoracion</a></span>
 					</div>
 				<?php } ?>
-				<div class="item-menu">
+				 -->
+				<!-- <div class="item-menu">
 					<i class="material-icons">&#xE558;</i>
 					<span><a href="consultaevaluacionesproveedores.php?msg=0">Visitas a Proveedores</a></span>
-				</div>
+				</div> -->
 				<div class="item-menu">
 					<i class="material-icons">&#xE002;</i>
 					<span><a href="semaforohallazgos.php?componente_selected=0">Debido Proceso</a></span>
@@ -122,12 +123,12 @@
 						<span><a onclick="document.forms.exportar.submit()">&nbsp;&nbsp;Exportar a Excel</a></span>
 					</form>
 				</div>
-				<?php if ($id_grupo == 1){ ?>
+				<!-- <?php if ($id_grupo == 1){ ?>
 					<div class="item-menu">
 						<i class="material-icons">&#xE5DB;</i>
 						<span><a href="ExportarInformes.php?msg=0">Exportar Informes</a></span>
 					</div>
-				<?php } ?>
+				<?php } ?> -->
 				<?php
 			}
 			elseif ($id_grupo==2) {

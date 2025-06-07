@@ -30,7 +30,7 @@ if ($_SESSION['login'])
 			subtema.estado='1'
 			"),$conexion);
 
-			$modalidades= mysql_query(("SELECT * FROM modalidad"),$conexion);
+			$modalidades= mysql_query(("SELECT * FROM modalidad where estado=1"),$conexion);
 		}
 		else{
 			//Grupo Members
@@ -249,7 +249,7 @@ if ($_SESSION['login'])
 								<div class="container">
 
 									<div class="footer">
-										<center> <p> &copy; 2020 Sistema de Información de la interventoría Buen Comienzo | <img src="images/pascualbravo.jpg" width="260" height="60"> </p>
+										<center> <p> &copy; 2024 Sistema de Información de la Supervisión de Buen Comienzo | <img src="images/pascualbravo.jpg" width="260" height="60"> </p>
 
 										</div>
 

@@ -1340,8 +1340,8 @@ if ($_SESSION['login'])
 				<div class="panel-heading">
 					<ul class="nav nav-tabs">
 						<li id="tab1" class="active"><a href="#tab1default" data-toggle="tab">Alertas</a></li>
-						<li><a href="#tab2default" data-toggle="tab">Gráfico</a></li>
-						<li id="gastos"><a href="#tab3default" data-toggle="tab">Gastos desplazamiento</a></li>
+						<!-- <li><a href="#tab2default" data-toggle="tab">Gráfico</a></li> -->
+						<!-- <li id="gastos"><a href="#tab3default" data-toggle="tab">Gastos desplazamiento</a></li> -->
 					</ul>
 				</div>
 				<div class="panel-body">
@@ -1438,7 +1438,7 @@ if ($_SESSION['login'])
 							?>
 
 						</div>
-						<div class="tab-pane fade" id="tab2default">
+						<!-- <div class="tab-pane fade" id="tab2default">
 							<div class="col-md-12">
 								<div class="col-md-8">
 									<div style="width: 500px; height: 500px;">
@@ -1460,8 +1460,8 @@ if ($_SESSION['login'])
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="tab-pane fadel" id="tab3default">
+						</div> -->
+						<!-- <div class="tab-pane fadel" id="tab3default">
 							<?php if (isset($actas_ajuste)){ ?>
 								<form class="" action="" method="post">
 									<div class="col-md-12">
@@ -1623,14 +1623,14 @@ if ($_SESSION['login'])
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
 			<div class="container">
 
 				<div class="footer">
-					<center> <p> &copy; 2020 Sistema de Información de la interventoría Buen Comienzo | <img src="images/pascualbravo.jpg" width="260" height="60"> </p>
+					<center> <p> &copy; 2024 Sistema de Información de la Supervisión de Buen Comienzo | <img src="images/pascualbravo.jpg" width="260" height="60"> </p>
 
 					</div>
 

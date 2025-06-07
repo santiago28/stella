@@ -248,7 +248,7 @@ if ($_SESSION['login'])
 <?php include("menu.php"); ?>
 <div class="container">
 	<p>
-		<!-- <a class="btn btn-success btn-lg" role="button">Imprimir Acta</a> -->
+		<a class="btn btn-success btn-lg" role="button">Imprimir Acta</a>
 
 		<?php
 		if($estado==1){
@@ -297,7 +297,7 @@ if ($_SESSION['login'])
 
 
 						<tr>
-							<th colspan="3"><div style="text-align:center">ACTA DE INTERVENTORÍA A LA PRESTACIÓN DEL SERVICIO DE ATENCIÓN INTEGRAL A LA PRIMERA INFANCIA</div></th>
+							<th colspan="3"><div style="text-align:center">ACTA DE SUPERVISIÓN A LA PRESTACIÓN DEL SERVICIO DE ATENCIÓN INTEGRAL A LA PRIMERA INFANCIA</div></th>
 						</tr>
 
 
@@ -369,7 +369,6 @@ if ($_SESSION['login'])
 																					<div class="alert alert-info" role="alert">
 																						Para editar esta evaluación tenga en cuenta las siguientes convenciones:
 																						1= Cumple,
-																						2= Cumple Parcialmente,
 																						3= No Cumple,
 																						4= No Subsanable,
 																						5= No Aplica.
@@ -757,7 +756,7 @@ if ($_SESSION['login'])
 																						<?php } ?>
 																						<br>
 																						<br>
-																						<div class="bs-docs-section"><h3 id="tables-example">Observaciones Generales de la Interventoria</h3></div>
+																						<div class="bs-docs-section"><h3 id="tables-example">Observaciones Generales de la Supervisión</h3></div>
 																						<div class="footer"></div>
 
 
@@ -961,7 +960,7 @@ if ($_SESSION['login'])
 
 
 																									<div class="footer">
-																										<center> <p> &copy; 2020 Sistema de Información de la interventoría Buen Comienzo | <img src="images/pascualbravo.jpg" width="260" height="60"> </p>
+																										<center> <p> &copy; 2024 Sistema de Información de la Supervisión de Buen Comienzo | <img src="images/pascualbravo.jpg" width="260" height="60"> </p>
 																										</div>
 
 																									</div> <!-- /container -->

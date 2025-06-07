@@ -127,11 +127,11 @@ if ($_SESSION['login'])
 
 	<div class="jumbotron">
 		<h2>Creación de Actas</h2>
-		<h5>Diligencie nuevas actas de interventoría</h5>
+		<h5>Diligencie nuevas actas de visita</h5>
 
 		<?php if ($id_grupo != 4) { ?>
-			<p><a class="btn btn-lg btn-block btn-pascual" href="configevaluaciones.php" role="button">Realizar nueva Interventoría</a></p>
-			<p><a class="btn btn-lg btn-block btn-pascual" href="corregirActas.php?msg=0" role="button">Corregir Interventorías</a></p>
+			<p><a class="btn btn-lg btn-block btn-pascual" href="configevaluaciones.php" role="button">Realizar nueva visita</a></p>
+			<p><a class="btn btn-lg btn-block btn-pascual" href="corregirActas.php?msg=0" role="button">Corregir visitas</a></p>
 		<?php } ?>
 
 	</div>	<!-- /jumbotron -->
@@ -212,7 +212,7 @@ include "cerrarconexion.php";
 <div class="container">
 
 	<div class="footer">
-		<center> <p> &copy; 2020 Sistema de Información de la interventoría Buen Comienzo | <img src="images/pascualbravo.jpg" width="260" height="60"> </p>
+		<center> <p> &copy; 2024 Sistema de Información de la Supervisión de Buen Comienzo | <img src="images/pascualbravo.jpg" width="260" height="60"> </p>
 
 		</div>
 
