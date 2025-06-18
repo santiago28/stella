@@ -132,6 +132,7 @@ if ($_SESSION['login'])
 		$valor_referencia="1";
 		$valor_calificacion=$_POST['valor_calificacion'];
 		$valor_calificacion_final=$_POST['valor_calificacion'];
+		$observacion=$_POST['observacion'];
 		$numero_visita=$_POST['numero_visita'];
 		$hora_inicio=$_POST['hora_inicio'];
 		$hora_fin=$_POST['hora_fin'];
@@ -217,7 +218,8 @@ if ($_SESSION['login'])
 			$pago_desplazamiento,
 			$transporte_interventoria,
 			$justificacion,
-			$tema_encuentro
+			$tema_encuentro,
+			$observacion
 		);
 
 		$regresar="imprimiractas.php?id_acta=".$id_acta;
@@ -1134,6 +1136,15 @@ if ($_SESSION['login'])
 		return true;
 		break;
 
+		case "33":
+		$id_acta = $_POST["id_acta"];
+		$firma = $_POST["firma"];
+		$clsFunciones= new clsFunciones;
+		$update = $clsFunciones->actualizarfirma($id_acta, $firma);
+		$regresar="imprimiractas.php?id_acta=".$id_acta;
+		header ('Location: '.$regresar);
+		return true;
+		break;
 
 
 	} //End Case

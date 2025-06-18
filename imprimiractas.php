@@ -54,7 +54,8 @@ if ($_SESSION['login'])
 	acta.id_interventor,
 	acta.estado,
 	acta.tema_encuentro,
-	modalidad.id_modalidad
+	modalidad.id_modalidad,
+	acta.firma
 	FROM
 	acta,componente,prestador,modalidad
 	WHERE
@@ -84,6 +85,7 @@ if ($_SESSION['login'])
 		$id_interventor=$row['id_interventor'];
 		$tema_encuentro=$row['tema_encuentro'];
 		$id_modalidad=$row["id_modalidad"];
+		$firma=$row["firma"];
 		if ($id_grupo == 4) {
 			$estado=0;
 		} else {
@@ -100,7 +102,8 @@ if ($_SESSION['login'])
 	subtema.nombre_subtema,
 	pregunta.descripcion_pregunta,
 	evaluacion.valor_calificacion,
-	evaluacion.valor_calificacion_final
+	evaluacion.valor_calificacion_final,
+	evaluacion.observacion
 	FROM
 	evaluacion,tema,subtema,pregunta
 	WHERE
@@ -226,8 +229,15 @@ if ($_SESSION['login'])
 
 		<!-- Upload Files -->
 		<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
-
-
+		<script src="https://cdn.jsdelivr.net/npm/lemonadejs/dist/lemonade.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@lemonadejs/signature/dist/index.min.js"></script>
+		<style>
+		@media print {
+			.no-print {
+				display: none !important;
+			}
+		}
+		</style>
 
 	</head>
 
@@ -239,7 +249,7 @@ if ($_SESSION['login'])
 				<img src="images/logo_medellin.png" width="140" height="60">
 			</div>
 		</div> -->
-		<div style="margin-top: 1%; float: right;">
+		<div class="no-print" style="margin-top: 1%; float: right;">
 			<a class="glyphicon glyphicon-home" href="homeadmin.php" style="font-size:35px; color:#ffffff; text-decoration:none;" role="button"></a>
 
 		</div>
@@ -248,12 +258,12 @@ if ($_SESSION['login'])
 <?php include("menu.php"); ?>
 <div class="container">
 	<p>
-		<a class="btn btn-success btn-lg" role="button">Imprimir Acta</a>
+		<button class="btn btn-success btn-lg no-print" role="button" id="ImprimirActa">Imprimir Acta</button>
 
 		<?php
 		if($estado==1){
 			?>
-			<a class="btn btn-pascual btn-lg" role="button" href='deletes.php?eliminar=<?php echo $id_acta; ?>&caso=4'>Bloquear Acta</a>
+			<a class="btn btn-pascual btn-lg no-print" role="button" href='deletes.php?eliminar=<?php echo $id_acta; ?>&caso=4'>Bloquear Acta</a>
 		</p>
 		<?php
 	}
@@ -267,7 +277,7 @@ if ($_SESSION['login'])
 
 			?>
 
-			<div id="mensaje" class="alert alert-success" role="alert">
+			<div id="mensaje" class="alert alert-success no-print" role="alert">
 				<h5 align="center"><strong>¡Felicitaciones!</strong>
 					El registro ha sido Insertado/Actualizado exitosamente.<button type="button" class="close" aria-hidden="true">x</button></h5>
 				</div>
@@ -366,11 +376,11 @@ if ($_SESSION['login'])
 																					<div class="footer"></div>
 
 
-																					<div class="alert alert-info" role="alert">
+																					<div class="alert alert-info no-print" role="alert">
 																						Para editar esta evaluación tenga en cuenta las siguientes convenciones:
 																						1= Cumple,
 																						3= No Cumple,
-																						4= No Subsanable,
+																						<!-- 4= No Subsanable, -->
 																						5= No Aplica.
 
 																					</div>
@@ -390,6 +400,7 @@ if ($_SESSION['login'])
 																									<tr>
 																										<th>#</th>
 																										<th>Pregunta</th>
+																										<th>Observación</th>
 																										<th>Calf. inicial</th>
 																										<th>Calf. Final</th>
 																									</tr>
@@ -397,6 +408,7 @@ if ($_SESSION['login'])
 																									<tr>
 																										<td><?php echo $row['id_pregunta'];  ?></td>
 																										<td><?php echo $row['descripcion_pregunta'];  ?></td>
+																										<td><?php echo $row['observacion'];  ?></td>
 																										<td><center><?php echo $row['valor_calificacion'];  ?><center></td>
 
 																											<?php if($row['valor_calificacion_final']==1){
@@ -414,8 +426,26 @@ if ($_SESSION['login'])
 																											<?php } ?>
 																										</tbody>
 																									</table>
-
-
+																									<?php if($firma!=""){
+																									?>
+																										<img src="<?php echo $firma;  ?>" />
+																									<?php
+																									} else{
+																									?>
+																										<form id="firmaracta" data-parsley-validate id="4" name="update" METHOD="post" action="inserts.php" class="no-print">				
+																											<input type="hidden" name="caso" value="33">
+																											<input type="hidden" name="id_acta" value="<?php echo $id_acta; ?>">
+																											<div id='root' style="width: 60%; border: 2px solid black;"></div>
+																											<input type="button" value="Volver a firmar" id="resetCanvas" class="btn btn-success no-print" />
+																											<input type="button" value="Firmar" id="getImage" class="btn btn-success no-print" />
+																											<button class="btn btn-pascual no-print" type="submit">Guardar firma</button>
+																											<img id="image" class="image full-width" />
+																											<input name="firma" id="firma" type="hidden" />
+																										</form>
+																									<?php
+																									}
+																									?>
+																									
 																									<?php
 																									if($msg!=0){
 																										if($msg==1){
@@ -423,7 +453,7 @@ if ($_SESSION['login'])
 
 																											?>
 
-																											<div id="mensaje" class="alert alert-success" role="alert">
+																											<div id="mensaje" class="alert alert-success no-print" role="alert">
 																												<h5 align="center"><strong>¡Felicitaciones!</strong>
 																													El registro ha sido Insertado/Actualizado exitosamente.<button type="button" class="close" aria-hidden="true">x</button></h5>
 																												</div>
@@ -446,8 +476,8 @@ if ($_SESSION['login'])
 
 
 																											<br>
-																											<div class="bs-docs-section">
-																												<h3 id="tables-example">Debido Proceso de los Hallazgos Encontrados</h3>
+																											<div class="bs-docs-section no-print">
+																												<h3 id="tables-example">Plan de mejora</h3>
 																											</div>
 																											<div class="footer"></div>
 
@@ -456,7 +486,7 @@ if ($_SESSION['login'])
 
 
 
-																										<form id="subsanacion" data-parsley-validate id="3" name="update" METHOD="post" action="inserts.php">
+																										<form id="subsanacion" data-parsley-validate id="3" name="update" METHOD="post" action="inserts.php" class="no-print">
 																											<input type="hidden" name="caso" value="7">
 																											<input type="hidden" name="id_acta" value="<?php echo $id_acta; ?>">
 
@@ -472,14 +502,14 @@ if ($_SESSION['login'])
 																															<th>#</th>
 																															<th>Descripcion_Pregunta</th>
 																															<th>Calf. Ini</th>
-																															<th>Hallazgos_Encontrados</th>
-																															<th>Acciones_Correctivas</th>
-																															<th class="success">Plazo Acciones .Correctivas.</th>
-																															<th class="success">Prorroga Acciones .Correctivas.</th>
+																															<th>Plan de mejora</th>
+																															<!-- <th>Acciones_Correctivas</th> -->
+																															<th class="success">Fecha de plan de mejora</th>
+																															<th class="success">Prorroga de plan de mejora</th>
 																															<th class="warning">Plazo Solicitud .Aclaración.</th>
-																															<th class="warning">Radicado Solicitud .Aclaración.</th>
+																															<!-- <th class="warning">Radicado Solicitud .Aclaración.</th> -->
 																															<th class="danger">Plazo Requerimiento</th>
-																															<th class="danger">Radicado Requerimiento</th>
+																															<!-- <th class="danger">Radicado Requerimiento</th> -->
 																															<th class="info">Envío .Evidencias.</th>
 																															<th class="info">Calf. Fin</th>
 																															<th class="info">Etapa del seguimiento</th>
@@ -524,7 +554,7 @@ if ($_SESSION['login'])
 
 																																<td><textarea name="descripcion_observacion[]" rows="4" style="width:250px"><?php echo $row['descripcion_observacion'];  ?></textarea></td>
 
-																																<td><textarea name="descripcion_accion_correctiva[]" rows="4" style="width:250px"><?php echo $row['descripcion_accion_correctiva'];  ?></textarea></td>
+																																<!-- <td><textarea name="descripcion_accion_correctiva[]" rows="4" style="width:250px"><?php echo $row['descripcion_accion_correctiva'];  ?></textarea></td> -->
 
 																																<td>
 																																	<center>
@@ -568,9 +598,9 @@ if ($_SESSION['login'])
 																																</td>
 
 
-																																<td>
+																																<!-- <td>
 																																	<input type="text" name="id_radicado_osa[]"  class="form-control" value="<?php echo $row['id_radicado_osa'];  ?>" placeholder="<?php echo $row['id_radicado_osa'];  ?>">
-																																</td>
+																																</td> -->
 
 																																<td>
 																																	<center>
@@ -585,9 +615,9 @@ if ($_SESSION['login'])
 																																	</center>
 																																</td>
 
-																																<td>
+																																<!-- <td>
 																																	<input type="text" name="id_radicado_orq[]"  class="form-control" value="<?php echo $row['id_radicado_orq'];  ?>" placeholder="<?php echo $row['id_radicado_orq'];  ?>">
-																																</td>
+																																</td> -->
 
 
 																																<td>
@@ -639,13 +669,13 @@ if ($_SESSION['login'])
 																									<?php } ?>
 																								</tbody>
 																							</table>
-
+																														
 
 
 																							<?php
 																							if($estado==1){
 																								?>
-																								<center><button class="btn btn-pascual" type="submit">Modificar Evaluación</button></center>
+																								<center><button class="btn btn-pascual no-print" type="submit">Modificar Evaluación</button></center>
 																								<?php
 																							}
 																							?>
@@ -659,7 +689,7 @@ if ($_SESSION['login'])
 
 																						?>
 
-																						<div class="container">
+																						<div class="container no-print">
 																							<div class="alert alert-success" role="alert">
 																								¡Felicitaciones Señor Operador: En el momento de la realización de la visita, no fueron encontrados hallazgos por subsanar!
 																							</div>
@@ -674,7 +704,7 @@ if ($_SESSION['login'])
 
 																					?>
 
-																					<div class="container">
+																					<div class="container no-print">
 
 
 																						<!-- ************************************************************************************** -->
@@ -765,7 +795,7 @@ if ($_SESSION['login'])
 																								<thead>
 																									<tr>
 																										<th>Fecha</th>
-																										<th>Observación Interventor</th>
+																										<th>Observación profesional de área</th>
 																										<th>Creada por</th>
 																									</tr>
 																								</thead>
@@ -982,8 +1012,31 @@ if ($_SESSION['login'])
 																											$(this).parent().parent().fadeOut();
 																										});
 
-																									})(jQuery);
+																										$("#ImprimirActa").click(function(e) {
+																											e.preventDefault();
+																											window.print();
+																										});
 
+																									})(jQuery);
+																									const root = document.getElementById("root")
+																										const resetCanvas = document.getElementById("resetCanvas")
+																										const getImage = document.getElementById("getImage")
+																										// Call signature with the root element and the options object, saving its reference in a variable
+																										const component = Signature(root, {
+																											width: 500,
+																											height: 100,
+																											instructions: "Ingrese su firma"
+																										});
+
+																										resetCanvas.addEventListener("click", () => {
+																											component.value = [];
+																										});
+
+																										getImage.addEventListener("click", () => {
+																											var firmaBase64 = component.getImage();
+																											$('#image').attr('src', firmaBase64);
+																											$('#firma').val(firmaBase64);
+																										});
 
 																									(function($) {
 																										<!-- Filtros para las tablas-->

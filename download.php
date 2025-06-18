@@ -133,7 +133,7 @@ if ($_SESSION['login'])
 				"ID-SEDE": "<?php echo $reg['id_sede']; ?>",
 				"NOMBRE SEDE": "<?php echo $reg['nombre_sede']; ?>",
 				"VISITA": "<?php echo $reg['numero_visita']; ?>",
-				"INTERVENTOR": "<?php echo $reg['id_interventor']; ?>",
+				"PROFESIONAL DE ÁREA": "<?php echo $reg['id_interventor']; ?>",
 				"DIRECCIÓN": "<?php echo $reg['direccion_sede']; ?>",
 				"BARRIO": "<?php echo $reg['barrio_sede']; ?>",
 				"ESTADO": "<?php if($reg['estado'] == 1){ echo 'abierta'; }else{ echo 'cerrada'; } ?>"
@@ -203,7 +203,7 @@ if ($_SESSION['login'])
 				"MODALIDAD": "<?php echo $reg['nombre_modalidad']; ?>",
 				"ID-SEDE": "<?php echo $reg['id_sede']; ?>",
 				"NOMBRE-SEDE": "<?php echo $reg['nombre_sede']; ?>",
-				"INTERVENTOR": "<?php echo $reg['id_interventor']; ?>",
+				"PROFESIONAL DE ÁREA": "<?php echo $reg['id_interventor']; ?>",
 				"FECHA EVALUACION": "<?php echo date("d/m/Y", strtotime($reg['fecha_evaluacion'])); ?>",
 				"VISITA": "<?php echo $reg['numero_visita']; ?>",
 				"CATEGORIA": "<?php echo $reg['nombre_tema']; ?>",
@@ -282,7 +282,7 @@ if ($_SESSION['login'])
 				"PREGUNTA": "<?php echo $reg['id_pregunta']; ?>",
 				"DESCRIPCION PREGUNTA": "<?php echo $reg['descripcion_pregunta']; ?>",
 				"COMPONENTE": "<?php echo $reg['nombre_componente']; ?>",
-				"INTERVENTOR": "<?php echo $reg['id_interventor']; ?>",
+				"PROFESIONAL DE ÁREA": "<?php echo $reg['id_interventor']; ?>",
 				"PRESTADOR": "<?php echo $reg['nombre_prestador']; ?>",
 				"CONTRATO": "<?php echo $reg['id_contrato']; ?>",
 				"MODALIDAD": "<?php echo $reg['abr_modalidad']; ?>",
@@ -428,7 +428,7 @@ if ($_SESSION['login'])
 				"MODALIDAD": "<?php echo $reg['nombre_modalidad']; ?>",
 				"ID-SEDE": "<?php echo $reg['id_sede']; ?>",
 				"NOMBRE-SEDE": "<?php echo $reg['nombre_sede']; ?>",
-				"INTERVENTOR": "<?php echo $reg['id_interventor']; ?>",
+				"PROFESIONAL DE ÁREA": "<?php echo $reg['id_interventor']; ?>",
 				"FECHA EVALUACION": "<?php echo date("d/m/Y", strtotime($reg['fecha_evaluacion'])); ?>",
 				"VISITA": "<?php echo $reg['numero_visita']; ?>",
 				"CATEGORIA": "<?php echo $reg['nombre_tema']; ?>",
@@ -492,7 +492,7 @@ if ($_SESSION['login'])
 				"ID-SEDE": "<?php echo $reg['id_sede']; ?>",
 				"NOMBRE SEDE": "<?php echo $reg['nombre_sede']; ?>",
 				"VISITA": "<?php echo $reg['numero_visita']; ?>",
-				"INTERVENTOR": "<?php echo $reg['id_interventor']; ?>",
+				"PROFESIONAL DE ÁREA": "<?php echo $reg['id_interventor']; ?>",
 				"%INICIAL": "<?php echo $reg['porc_inicial']*100; ?>",
 				"%FINAL": "<?php echo $reg['porc_final']*100; ?>",
 				"ESTADO": "<?php echo $reg['estado']; ?>",
@@ -892,7 +892,7 @@ if ($_SESSION['login'])
 							"DEBIDO PROCESO": "<?php echo $reg['debido_proceso1']; ?>",
 							"ASISTENCIA TECNICA": "<?php echo $reg['asistencia_tecnica1']; ?>",
 							"OTRAS OBSERVACIONES": "<?php echo $reg['otras_observaciones1']; ?>",
-							"INTERVENTOR": "<?php echo $reg['id_interventor']; ?>"
+							"PROFESIONAL DE ÁREA": "<?php echo $reg['id_interventor']; ?>"
 						});
 						</script>
 					<?php } ?>
@@ -1636,7 +1636,7 @@ if ($_SESSION['login'])
 										Export.push({
 											"ACTA": "<?php echo $row['id_acta']; ?>",
 											"PRESTADOR": "<?php echo $row['nombre_prestador']; ?>",
-											"INTERVENTOR":"<?php echo $row['id_interventor'];?>",
+											"PROFESIONAL DE ÁREA":"<?php echo $row['id_interventor'];?>",
 											"FECHA VISITA": "<?php echo $row['fecha_evaluacion']; ?>",
 											"SEDE": "<?php echo $row['nombre_sede']; ?>",
 											"VARIABLE NS": "<?php echo	$descripcion_pregunta;?>",
@@ -1644,7 +1644,7 @@ if ($_SESSION['login'])
 											"NUTRICIONISTA": "<?php echo $row['nombre_asistentes']; ?>",
 											"INFORMACION DE PARTICIPANTES(NUIP, NOMBRES Y APELLIDOS, PESO 1, PESO 2, PESO PROMEDIO, TALLA 1, TALLA 2, TALLA PROMEDIO)": "<?php echo $row['informacion_complementaria']; ?>",
 											"TEMA ENCUENTRO EDUCATIVO": "<?php echo	str_replace('"', " ", $row['tema_encuentro']);?>",
-											"OBSERVACION INTERVENTOR": "<?php echo $observacion_evaluador; ?>",
+											"OBSERVACION PROFESIONAL DE ÁREA": "<?php echo $observacion_evaluador; ?>",
 											"OBSERVACION PRESTADOR": "<?php echo $observacion_usuario; ?>"
 										});
 										</script>

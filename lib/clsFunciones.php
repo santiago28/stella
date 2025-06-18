@@ -248,7 +248,8 @@ class clsFunciones {
 		$pago_desplazamiento,
 		$transporte_interventoria,
 		$justificacion,
-		$tema_encuentro
+		$tema_encuentro,
+		$observacion
 	  ){
 
 		include("conexion.php");
@@ -272,7 +273,8 @@ class clsFunciones {
 					id_interventor,
 					numero_visita,
 					fecha_evaluacion,
-					estado
+					estado,
+					observacion
 				)
 				values
 				(
@@ -291,7 +293,8 @@ class clsFunciones {
 					'$id_interventor',
 					'$numero_visita',
 					'$fecha_evaluacion',
-					'$estado'
+					'$estado',
+					'$observacion[$i]'
 				)";
 				$insertreg= mysql_query($query,$conexion);
 			}
@@ -2312,6 +2315,17 @@ class clsFunciones {
 																					function deleteactadescuentos($id_eliminar){
 																						include("conexion.php");
 																						$query=	" UPDATE descuentos SET estado='0' where id='$id_eliminar'";
+																						$deletereg= mysql_query($query,$conexion);
+																						if(mysql_affected_rows() > 0){
+																							return TRUE;
+																						} else {
+																							return FALSE;
+																						}
+																					}
+
+																					function actualizarfirma($id_acta, $firma){
+																						include("conexion.php");
+																						$query=	" UPDATE acta SET firma='$firma' where id_acta='$id_acta'";
 																						$deletereg= mysql_query($query,$conexion);
 																						if(mysql_affected_rows() > 0){
 																							return TRUE;

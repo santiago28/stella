@@ -191,7 +191,7 @@ if ($_SESSION['login'])
 
 				<!-- Custom styles for this template -->
 				<link href="css/jumbotron-narrow.css" rel="stylesheet">
-
+				
 
 			</head>
 
@@ -229,7 +229,7 @@ if ($_SESSION['login'])
 			<div class="footer"></div>
 
 			<div class="alert alert-info" role="alert">
-				<strong>¡Señor(a) interventor(a)!</strong> Si los datos relacionados con el contrato presentan alguna inconsistencia, no diligencie la evaluación y póngase en contacto con el administrador del sistema
+				<strong>¡Señor(a) profesional de área!</strong> Si los datos relacionados con el contrato presentan alguna inconsistencia, no diligencie la evaluación y póngase en contacto con el administrador del sistema
 			</div>
 
 
@@ -267,7 +267,7 @@ if ($_SESSION['login'])
 			<div class="footer"></div>
 
 			<div class="alert alert-success" role="alert">
-				<strong>¡Señor(a) interventor(a)!</strong> Verifique los datos para esta evaluación. Si hay alguna modificación en la información de la sede, por favor realice el cambio.
+				<strong>¡Señor(a) profesional de área!</strong> Verifique los datos para esta evaluación. Si hay alguna modificación en la información de la sede, por favor realice el cambio.
 			</div>
 
 
@@ -307,7 +307,7 @@ if ($_SESSION['login'])
 				<div class="footer"></div>
 
 				<div class="alert alert-warning" role="alert">
-					<strong>¡Señor(a) interventor(a)!</strong> Diligencie los siguientes datos para continuar. No deben quedar casillas en blanco
+					<strong>¡Señor(a) profesional de área!</strong> Diligencie los siguientes datos para continuar. No deben quedar casillas en blanco
 				</div>
 
 				<center>
@@ -391,10 +391,10 @@ if ($_SESSION['login'])
 				<div class="footer"></div>
 
 				<div class="alert alert-danger" role="alert">
-					<strong>¡Señor interventor!</strong> Para diligenciar esta evaluación tenga en cuenta las siguientes convenciones:
+					<strong>¡Señor profesional de área!</strong> Para diligenciar esta evaluación tenga en cuenta las siguientes convenciones:
 					1.C		= Cumple,
 					3.NC	= No Cumple,
-					4.NS 	= No Subsanable,
+					<!-- 4.NS 	= No Subsanable, -->
 					5.NA	= No Aplica.
 
 				</div>
@@ -460,6 +460,7 @@ if ($_SESSION['login'])
 														<th class="info">Criterio de calidad</th>
 														<th class="info">Descripción de la pregunta</th>
 														<th class="info">*Calificación*</th>
+														<th class="info">Observación</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -498,9 +499,12 @@ if ($_SESSION['login'])
 														<select data-parsley-min="1" class="form-control" id="select1" name="valor_calificacion[]">
 															<option value="1" selected	>1.C</option>
 															<option value="3" 			>3.NC</option>
-															<option value="4" 			>4.NS</option>
+															<!-- <option value="4" 			>4.NS</option> -->
 															<option value="5" 			>5.NA</option>
 														</select>
+													</td>
+													<td class="active">
+														<textarea name="observacion[]"  style="width:100%"></textarea>
 													</td>
 												</tr>
 												<?php $i++; $id_tema = $row['id_tema']; } ?>

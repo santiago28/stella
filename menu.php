@@ -1,5 +1,5 @@
 <div id="MenuPrincipal">
-	<i class="material-icons icono-menu">&#xE5D2;</i>
+	<i class="material-icons icono-menu no-print">&#xE5D2;</i>
 	<div class="sobre-menu-principal"></div>
 	<div class="menu-principal">
 		<div class="header-menu-principal">
