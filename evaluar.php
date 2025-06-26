@@ -391,12 +391,25 @@ if ($_SESSION['login'])
 				<div class="footer"></div>
 
 				<div class="alert alert-danger" role="alert">
+
+
+				<?php if($tipo_acta == 4){ ?>
+				<strong>¡Señor profesional de área!</strong> Para diligenciar esta evaluación tenga en cuenta las siguientes convenciones:
+					1.AC		= Aceptable,
+					2.AR	= Aceptable con requerimiento,
+					<!-- 4.NS 	= No Subsanable, -->
+					3.I	= Inaceptable.
+
+				<?php } else { ?>
 					<strong>¡Señor profesional de área!</strong> Para diligenciar esta evaluación tenga en cuenta las siguientes convenciones:
 					1.C		= Cumple,
 					3.NC	= No Cumple,
 					<!-- 4.NS 	= No Subsanable, -->
 					5.NA	= No Aplica.
 
+				<?php } ?>
+
+				
 				</div>
 
 
@@ -496,12 +509,25 @@ if ($_SESSION['login'])
 													<td class="active"><?php echo $row['nombre_subtema'];  ?></td>
 													<td class="active"><?php echo $row['descripcion_pregunta'];  ?></td>
 													<td class="active">
+													
+													<?php
+													
+													if($tipo_acta == 4){ ?>
+
+														<select data-parsley-min="1" class="form-control" id="select1" name="valor_calificacion[]">
+															<option value="1" selected	>1.A</option>
+															<option value="2" 			>2.AR</option>
+															<!-- <option value="4" 			>4.NS</option> -->
+															<option value="3" 			>3.I</option>
+														</select>
+														<?php } else { ?>
 														<select data-parsley-min="1" class="form-control" id="select1" name="valor_calificacion[]">
 															<option value="1" selected	>1.C</option>
 															<option value="3" 			>3.NC</option>
 															<!-- <option value="4" 			>4.NS</option> -->
 															<option value="5" 			>5.NA</option>
 														</select>
+														<?php } ?>
 													</td>
 													<td class="active">
 														<textarea name="observacion[]"  style="width:100%"></textarea>

@@ -2323,9 +2323,9 @@ class clsFunciones {
 																						}
 																					}
 
-																					function actualizarfirma($id_acta, $firma){
+																					function actualizarfirma($id_acta, $firma, $firma2){
 																						include("conexion.php");
-																						$query=	" UPDATE acta SET firma='$firma' where id_acta='$id_acta'";
+																						$query=	" UPDATE acta SET firma='$firma', firma2='$firma2' where id_acta='$id_acta'";
 																						$deletereg= mysql_query($query,$conexion);
 																						if(mysql_affected_rows() > 0){
 																							return TRUE;

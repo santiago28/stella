@@ -77,7 +77,7 @@ if ($_SESSION['login'])
 		$id_subtema=$_POST['id_subtema'];
 		$id_modalidad=$_POST['id_modalidad'];
 		isset($_POST['tipo_acta'])== true? $tipo_acta=$_POST['tipo_acta']:$tipo_acta=0;
-		if($tipo_acta==4) $tipo_acta=0;
+		//if($tipo_acta==4) $tipo_acta=0;
 		$estado="1";
 		$clsFunciones = new clsFunciones;
 		$insert = $clsFunciones->insertpregunta($descripcion_pregunta,$id_componente,$id_tema,$id_subtema,$id_modalidad,$estado, $tipo_acta);
@@ -1139,8 +1139,9 @@ if ($_SESSION['login'])
 		case "33":
 		$id_acta = $_POST["id_acta"];
 		$firma = $_POST["firma"];
+		$firma2 = $_POST["firma2"];
 		$clsFunciones= new clsFunciones;
-		$update = $clsFunciones->actualizarfirma($id_acta, $firma);
+		$update = $clsFunciones->actualizarfirma($id_acta, $firma, $firma2);
 		$regresar="imprimiractas.php?id_acta=".$id_acta;
 		header ('Location: '.$regresar);
 		return true;

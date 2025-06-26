@@ -192,6 +192,7 @@ if ($_SESSION['login'])
 								<option value="1">Familiar-AAVN </option>
 								<option value="2">Familiar-administrativas</option>
 								<option value="3">Familiar-sede</option>
+								<option value="4">Familiar-PHS</option>
 							</select>
 
 							<select data-parsley-min="1" class="form-control" name="id_subtema" id="select3">

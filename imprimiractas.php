@@ -55,7 +55,8 @@ if ($_SESSION['login'])
 	acta.estado,
 	acta.tema_encuentro,
 	modalidad.id_modalidad,
-	acta.firma
+	acta.firma,
+	acta.firma2
 	FROM
 	acta,componente,prestador,modalidad
 	WHERE
@@ -86,6 +87,7 @@ if ($_SESSION['login'])
 		$tema_encuentro=$row['tema_encuentro'];
 		$id_modalidad=$row["id_modalidad"];
 		$firma=$row["firma"];
+		$firma2=$row["firma2"];
 		if ($id_grupo == 4) {
 			$estado=0;
 		} else {
@@ -428,19 +430,50 @@ if ($_SESSION['login'])
 																									</table>
 																									<?php if($firma!=""){
 																									?>
-																										<img src="<?php echo $firma;  ?>" />
+																										<div class="row">
+																											<div class="col-md-12">
+																												<div class="col-md-6">
+																													<img src="<?php echo $firma;  ?>" />
+																												</div>
+																												<div class="col-md-6">
+																													<img src="<?php echo $firma2;  ?>" />
+																												</div>
+																											</div>
+																										</div
+																										
 																									<?php
 																									} else{
 																									?>
-																										<form id="firmaracta" data-parsley-validate id="4" name="update" METHOD="post" action="inserts.php" class="no-print">				
-																											<input type="hidden" name="caso" value="33">
-																											<input type="hidden" name="id_acta" value="<?php echo $id_acta; ?>">
-																											<div id='root' style="width: 60%; border: 2px solid black;"></div>
-																											<input type="button" value="Volver a firmar" id="resetCanvas" class="btn btn-success no-print" />
-																											<input type="button" value="Firmar" id="getImage" class="btn btn-success no-print" />
-																											<button class="btn btn-pascual no-print" type="submit">Guardar firma</button>
-																											<img id="image" class="image full-width" />
-																											<input name="firma" id="firma" type="hidden" />
+																										<form id="firmaracta" data-parsley-validate id="4" name="update" METHOD="post" action="inserts.php" class="no-print">	
+																										<input type="hidden" name="caso" value="33">
+																										<input type="hidden" name="id_acta" value="<?php echo $id_acta; ?>">	
+																										<div class="row">
+																												<div class="col-md-12">
+																													<div class="col-md-6">
+																														<div id='root' style="width: 90%; border: 2px solid black;"></div>
+																														<input type="button" value="Volver a firmar" id="resetCanvas" class="btn btn-success no-print" />
+																														<input type="button" value="Firmar" id="getImage" class="btn btn-success no-print" />
+																														<img id="image" class="image full-width" />
+																														<input name="firma" id="firma" type="hidden" />
+																													</div>
+																													<div class="col-md-6">
+																														<div id='root2' style="width: 90%; border: 2px solid black;"></div>
+																														<input type="button" value="Volver a firmar" id="resetCanvas2" class="btn btn-success no-print" />
+																														<input type="button" value="Firmar" id="getImage2" class="btn btn-success no-print" />
+																														<img id="image2" class="image full-width" />
+																														<input name="firma2" id="firma2" type="hidden" />
+																													</div>
+																												</div>
+																												<div class="col-md-12 text-center">
+																													<br/>
+																													<br/>
+																													<br/>
+																													<button class="btn btn-pascual no-print" type="submit">Guardar firma</button>
+
+																												</div>
+																											</div>	
+
+																											
 																										</form>
 																									<?php
 																									}
@@ -1025,7 +1058,7 @@ if ($_SESSION['login'])
 																										const component = Signature(root, {
 																											width: 500,
 																											height: 100,
-																											instructions: "Ingrese su firma"
+																											instructions: "Ingrese su firma - Prestador"
 																										});
 
 																										resetCanvas.addEventListener("click", () => {
@@ -1036,6 +1069,29 @@ if ($_SESSION['login'])
 																											var firmaBase64 = component.getImage();
 																											$('#image').attr('src', firmaBase64);
 																											$('#firma').val(firmaBase64);
+																										});
+
+																										
+
+
+																										const root2 = document.getElementById("root2")
+																										const resetCanvas2 = document.getElementById("resetCanvas2")
+																										const getImage2 = document.getElementById("getImage2")
+																										// Call signature with the root element and the options object, saving its reference in a variable
+																										const component2 = Signature(root2, {
+																											width: 500,
+																											height: 100,
+																											instructions: "Ingrese su firma - Profesional"
+																										});
+
+																										resetCanvas2.addEventListener("click", () => {
+																											component2.value = [];
+																										});
+
+																										getImage2.addEventListener("click", () => {
+																											var firmaBase64 = component2.getImage();
+																											$('#image2').attr('src', firmaBase64);
+																											$('#firma2').val(firmaBase64);
 																										});
 
 																									(function($) {

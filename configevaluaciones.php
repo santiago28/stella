@@ -130,10 +130,8 @@ if ($_SESSION['login'])
 					</select>
 
 					<select  class="form-control" name="tipo_acta" id="select_4">
-						<option value="0" >Seleccione tipo de acta...</option>
-						<option value="1">Familiar-AAVN </option>
-						<option value="2">Familiar-administrativas</option>
-						<option value="3">Familiar-sede</option>
+						<option value="0" >ACTA DE VISITA</option>
+						<option value="4">PERFIL HIGIÉNICO SANITARIO</option>
 					</select>
 
 					<div id="select5">
@@ -281,9 +279,9 @@ if ($_SESSION['login'])
 						debugger;
 						var value_componente = $("#select4").val();
 						var value_modalidad = $("#select2").val();
-						if (value_componente == 7 && value_modalidad == 5) {
+						if (value_componente == 7) {
 							$("#select_4").attr("disabled",false);	
-							$('#select_4').attr('data-parsley-min', 1);
+							// $('#select_4').attr('data-parsley-min', 1);
 						}else{
 							$("#select_4").attr("disabled",true);
 							$("#select_4 option[value="+ 0 +"]").attr("selected",true)
