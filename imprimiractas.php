@@ -107,12 +107,12 @@ if ($_SESSION['login'])
 	evaluacion.valor_calificacion_final,
 	evaluacion.observacion
 	FROM
-	evaluacion,tema,subtema,pregunta
+	evaluacion
+	LEFT JOIN tema ON evaluacion.id_tema = tema.id_tema
+	LEFT JOIN subtema ON evaluacion.id_subtema = subtema.id_subtema
+	LEFT JOIN pregunta ON evaluacion.id_pregunta = pregunta.id_pregunta
 	WHERE
-	evaluacion.id_tema=tema.id_tema and
-	evaluacion.id_subtema=subtema.id_subtema and
-	evaluacion.id_pregunta=pregunta.id_pregunta and
-	id_acta='$id_acta'
+	evaluacion.id_acta='$id_acta'
 	"),$conexion);
 
 	//Query para traer todas las observaciones de la evaluacion correspondientes al acta
@@ -545,7 +545,6 @@ if ($_SESSION['login'])
 																															<!-- <th class="danger">Radicado Requerimiento</th> -->
 																															<th class="info">Envío .Evidencias.</th>
 																															<th class="info">Calf. Fin</th>
-																															<th class="info">Etapa del seguimiento</th>
 																														</tr>
 
 																													</thead>
@@ -668,7 +667,7 @@ if ($_SESSION['login'])
 																																<?php if ($row['valor_calificacion_final'] == 4){ ?>
 																																	<td><center><textarea readonly data-parsley-min="1"  data-parsley-max="4" data-parsley-type="number" data-parsley-required name="valor_calificacion_final[]" rows="1" style="width:50px" placeholder="<?php echo $row['valor_calificacion_final'];  ?>" autofocus><?php echo $row['valor_calificacion_final'];  ?></textarea></center></td>
 																																<?php }else{ ?>
-																																	<td><center><textarea data-parsley-min="1"  data-parsley-max="4" data-parsley-type="number" data-parsley-required name="valor_calificacion_final[]" rows="1" style="width:50px" placeholder="<?php echo $row['valor_calificacion_final'];  ?>" autofocus><?php echo $row['valor_calificacion_final'];  ?></textarea></center></td>
+																																	<td><center><textarea readonly data-parsley-min="1"  data-parsley-max="4" data-parsley-type="number" data-parsley-required name="valor_calificacion_final[]" rows="1" style="width:50px" placeholder="<?php echo $row['valor_calificacion_final'];  ?>" autofocus><?php echo $row['valor_calificacion_final'];  ?></textarea></center></td>
 																																<?php } ?>
 																																<!-- <?php if ($row['valor_calificacion_final'] == 4){ ?>
 																																<td>
@@ -954,67 +953,7 @@ if ($_SESSION['login'])
 																								?>
 
 
-																								<br>
-																								<div class="bs-docs-section"><h3 id="tables-example">Cargar Imágenes al Acta (Solo archivos pdf, jpg, jpeg, png)</h3>	</div>
-																								<div class="footer"></div>
-
-																								<?php if(mysql_num_rows($queryarchivo) > 0){ ?>
-																									<table class="table table-bordered table-hover" id='tcreados'>
-																										<thead>
-																											<tr>
-																												<th>Imagen</th>
-																												<th>Fecha</th>
-																												<th>Nombre del Archivo</th>
-																												<th>Descripción del Archivo</th>
-																												<th>Subida por</th>
-																											</tr>
-																										</thead>
-
-
-																										<tbody>
-																											<?php
-																											while($row = mysql_fetch_assoc($queryarchivo)){ ?>
-																												<tr>
-																													<td>
-																														<a href="<?php echo $folder_lectura.$row['nombre_archivo'];  ?>" class="thumbnail" target="_blank">
-																															<?php if(substr($row['nombre_archivo'], -3)=="pdf" || substr($row['nombre_archivo'], -3)=="xls" || substr($row['nombre_archivo'], -4)=="xlsx") { ?>
-																																<img src="<?php echo $folder_lectura."file.png";  ?>" alt="imagen"></a>
-																															<?php } else { ?>
-																																<img src="<?php echo $folder_lectura.$row['nombre_archivo'];  ?>" alt="imagen"></a>
-																															<?php }  ?>
-																														</td>
-																														<td><?php echo $row['fecha_archivo'];  ?></td>
-																														<td><?php echo $row['nombre_archivo'];  ?></td>
-																														<td><?php echo $row['descripcion_archivo'];  ?></td>
-																														<td><?php echo $row['id_interventor'];  ?></td>
-																													</tr>
-																												<?php } ?>
-																											</tbody>
-
-																										</table>
-
-																									<?php } ?>
-
-
-
-
-																									<form data-parsley-validate name="upload-file" id="upload-file" METHOD="post" enctype="multipart/form-data" action="inserts.php">
-																										<input type="hidden" name="caso" value="16">
-																										<input type="hidden" name="folder" value="<?php echo $folder; ?>">
-																										<input type="hidden" name="id_acta" value="<?php echo $id_acta; ?>">
-																										<input type="hidden" name="id_interventor" value="<?php echo $user; ?>">
-																										<input type="hidden" name="fecha_archivo" value="<?php echo date("Y-m-d H:i:s");  ?>">
-
-																										<?php if($estado==1){ ?>
-																											<input type="text" data-parsley-required name="descripcion_archivo"  class="form-control" placeholder="Descripción del archivo">
-																											<input data-parsley-required type="file" class="filestyle" name="archivo" id="archivo" value="" data-buttonName="btn-pascual" data-buttonText=" Buscar...">
-																											<br>
-																											<button  class="btn btn-pascual" type="submit">Subir Imagen</button>
-																										<?php } ?>
-
-																										<br>
-																										<br>
-																									</form>
+																								
 
 
 

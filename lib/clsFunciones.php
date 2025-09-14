@@ -1,4 +1,3 @@
-
 <?php
 class clsFunciones {
 
@@ -546,11 +545,14 @@ class clsFunciones {
 								"),$conexion);
 
 								$cantidad = 0;
+								$porc_referencia_acta = array();
+								$porc_inicial_acta = array();
+								$porc_final_acta = array();
 
 								while ($row=mysql_fetch_assoc($queryporcentaje_acta)) {
 									$cantidad = $cantidad + 1;
 									// $id_evaluacion_acta[] = $row["id_evaluacion"];
-									// $porc_referencia_acta[]=$row['porc_referencia'];
+									$porc_referencia_acta[]=$row['porc_referencia'];
 									$porc_inicial_acta[]=$row['porc_inicial'];
 									$porc_final_acta[]=$row['porc_final'];
 									// $porc_componente_x_final_acta[]=$row['porc_componente_x_final'];
@@ -919,6 +921,11 @@ class clsFunciones {
 												"),$conexion);
 
 												$cantidad = 0;
+												$id_evaluacion_acta = array();
+												$porc_referencia_acta = array();
+												$porc_inicial_acta = array();
+												$porc_final_acta = array();
+												$porc_componente_x_final_acta = array();
 
 												while ($row=mysql_fetch_assoc($queryporcentaje_acta)) {
 													$cantidad = $cantidad + 1;
@@ -1746,11 +1753,14 @@ class clsFunciones {
 																						"),$conexion);
 
 																						$cantidad = 0;
+																						$porc_referencia_acta = array();
+																						$porc_inicial_acta = array();
+																						$porc_final_acta = array();
 
 																						while ($row=mysql_fetch_assoc($queryporcentaje_acta)) {
 																							$cantidad = $cantidad + 1;
 																							// $id_evaluacion_acta[] = $row["id_evaluacion"];
-																							// $porc_referencia_acta[]=$row['porc_referencia'];
+																							$porc_referencia_acta[]=$row['porc_referencia'];
 																							$porc_inicial_acta[]=$row['porc_inicial'];
 																							$porc_final_acta[]=$row['porc_final'];
 																							// $porc_componente_x_final_acta[]=$row['porc_componente_x_final'];

@@ -165,8 +165,7 @@ if ($_SESSION['login'])
 				<th class="info">Sede</th>
 				<th class="info">Visita</th>
 				<th class="info">Interv.</th>
-				<th class="info">%Ini</th>
-				<th class="info">%Fin</th>
+				<th class="info">Porcentaje</th>
 				<th class="info">Estado</th>
 			</tr>
 		</thead>
@@ -184,7 +183,6 @@ if ($_SESSION['login'])
 					<td class="active"><?php echo $row['numero_visita'];  ?></td>
 					<td class="active"><?php echo $row['id_interventor'];  ?></td>
 					<td class="active"><?php echo $row['porc_inicial']*100;  ?>%</td>
-					<td class="active"><?php echo $row['porc_final']*100;  ?>%</td>
 					<td class="active"><?php if ($row['estado']==1) {echo "Abierta";} else{echo "Cerrada";}  ?></td>
 
 				</tr>

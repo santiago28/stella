@@ -514,15 +514,17 @@ if ($_SESSION['login'])
 													
 													if($tipo_acta == 4){ ?>
 
-														<select data-parsley-min="1" class="form-control" id="select1" name="valor_calificacion[]">
-															<option value="1" selected	>1.A</option>
+														<select data-parsley-min="1" class="form-control" id="select1" name="valor_calificacion[]" required>
+															<option value=""	selected	>Seleccione</option>
+															<option value="1"	>1.A</option>
 															<option value="2" 			>2.AR</option>
 															<!-- <option value="4" 			>4.NS</option> -->
 															<option value="3" 			>3.I</option>
 														</select>
 														<?php } else { ?>
-														<select data-parsley-min="1" class="form-control" id="select1" name="valor_calificacion[]">
-															<option value="1" selected	>1.C</option>
+														<select data-parsley-min="1" class="form-control" id="select1" name="valor_calificacion[]" required>
+														<option value=""	selected	>Seleccione</option>	
+														<option value="1"	>1.C</option>
 															<option value="3" 			>3.NC</option>
 															<!-- <option value="4" 			>4.NS</option> -->
 															<option value="5" 			>5.NA</option>
